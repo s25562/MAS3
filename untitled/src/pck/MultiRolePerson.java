@@ -7,14 +7,17 @@ import java.time.LocalDate;
 import java.util.EnumSet;
 
 public class MultiRolePerson extends Person implements IStudent, IEmployee {
-    enum Role {Student, Employee};
+    private enum Role {Student, Employee};
+    private GenderAspect genderAspect;
     private EnumSet<Role> roles;
     private Student student;
     private Employee employee;
 
+
     public MultiRolePerson(String firstName, String lastName, LocalDate birthDate){
         super(firstName, lastName, birthDate);
         this.roles = EnumSet.noneOf(Role.class);
+
     }
 
     public void addStudentRole(int index, float scholarship){
@@ -45,7 +48,11 @@ public class MultiRolePerson extends Person implements IStudent, IEmployee {
         return this.employee != null ? this.employee.getSalary() : 0 ;
     }
 
+    public void setGenderAspect(GenderType genderType) {
+        this.genderAspect = new GenderAspect(genderType);
+    }
 
-
-
+    public GenderAspect getGenderAspect() {
+        return genderAspect;
+    }
 }
